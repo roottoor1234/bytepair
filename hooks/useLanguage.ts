@@ -18,12 +18,12 @@ export function useLanguage() {
     }
   }, []);
 
-  const changeLanguage = (newLanguage: Language) => {
-    setLanguage(newLanguage);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('language', newLanguage);
-    }
-  };
+const changeLanguage = (newLanguage: Language) => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('language', newLanguage);
+    window.location.reload(); // κάνει reload τη σελίδα
+  }
+};
 
   const t = translations[language];
 
