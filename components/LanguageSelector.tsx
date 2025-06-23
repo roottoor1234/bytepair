@@ -5,7 +5,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { Languages } from "lucide-react";
 
 // Define the Language type based on your language codes
-type Language = 'en' | 'es' | 'fr' | 'el';
+type Language = 'en' | 'el';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,8 +18,6 @@ export function LanguageSelector() {
 
   const languages = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
     { code: 'el', name: 'Ελληνικά', flag: '🇬🇷' },
   ];
 
