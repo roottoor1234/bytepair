@@ -3,6 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
 import { Languages } from "lucide-react";
+
+// Define the Language type based on your language codes
+type Language = 'en' | 'es' | 'fr' | 'el';
 import {
   DropdownMenu,
   DropdownMenuContent,
