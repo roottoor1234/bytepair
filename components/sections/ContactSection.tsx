@@ -1,28 +1,54 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/hooks/useLanguage";
-import { 
+import {
   ArrowRight,
   Mail,
   Phone,
   MapPin,
-  Github,
-  Linkedin,
-  Twitter
+  Instagram,
+  Facebook,
 } from "lucide-react";
 
 export function ContactSection() {
   const { t } = useLanguage();
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [service, setService] = useState(t.contact.form.services?.[0] || "");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/send-mail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, service, message }),
+    });
+
+    if (res.ok) {
+      alert("Το μήνυμα εστάλη!");
+      window.location.reload();
+    } else {
+      alert("Αποτυχία αποστολής.");
+    }
+  };
+
   return (
     <section id="contact" className="py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-orange-500/20 text-orange-400 border-orange-500/30">{t.contact.badge}</Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">{t.contact.title}</h2>
+          <Badge className="mb-4 bg-orange-500/20 text-orange-400 border-orange-500/30">
+            {t.contact.badge}
+          </Badge>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+            {t.contact.title}
+          </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             {t.contact.description}
           </p>
@@ -35,7 +61,9 @@ export function ContactSection() {
                 <Phone className="w-5 h-5 text-orange-500" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1 text-white">{t.contact.phone.title}</h3>
+                <h3 className="font-semibold mb-1 text-white">
+                  {t.contact.phone.title}
+                </h3>
                 <p className="text-gray-300">{t.contact.phone.number}</p>
                 <p className="text-sm text-gray-400">{t.contact.phone.hours}</p>
               </div>
@@ -46,9 +74,13 @@ export function ContactSection() {
                 <Mail className="w-5 h-5 text-green-500" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1 text-white">{t.contact.email.title}</h3>
+                <h3 className="font-semibold mb-1 text-white">
+                  {t.contact.email.title}
+                </h3>
                 <p className="text-gray-300">{t.contact.email.address}</p>
-                <p className="text-sm text-gray-400">{t.contact.email.response}</p>
+                <p className="text-sm text-gray-400">
+                  {t.contact.email.response}
+                </p>
               </div>
             </div>
 
@@ -57,72 +89,110 @@ export function ContactSection() {
                 <MapPin className="w-5 h-5 text-orange-500" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1 text-white">{t.contact.office.title}</h3>
+                <h3 className="font-semibold mb-1 text-white">
+                  {t.contact.office.title}
+                </h3>
                 <p className="text-gray-300">{t.contact.office.address1}</p>
                 <p className="text-gray-300">{t.contact.office.address2}</p>
               </div>
             </div>
 
             <div className="pt-6">
-              <h3 className="font-semibold mb-4 text-white">{t.contact.followUs}</h3>
+              <h3 className="font-semibold mb-4 text-white">
+                {t.contact.followUs}
+              </h3>
               <div className="flex space-x-4">
-                <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:text-white hover:bg-gray-800">
-                  <Github className="w-4 h-4 mr-2" />
-                  GitHub
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-gray-600 text-gray-300 hover:text-white hover:bg-gray-800"
+                >
+                  <Instagram className="w-4 h-4 mr-2" /> Instagram
                 </Button>
-                <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:text-white hover:bg-gray-800">
-                  <Linkedin className="w-4 h-4 mr-2" />
-                  LinkedIn
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-gray-600 text-gray-300 hover:text-white hover:bg-gray-800"
+                >
+                  <Facebook className="w-4 h-4 mr-2" /> Facebook
                 </Button>
-                <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:text-white hover:bg-gray-800">
-                  <Twitter className="w-4 h-4 mr-2" />
-                  Twitter
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-gray-600 text-gray-300 hover:text-white hover:bg-gray-800"
+                >
+                  <MapPin className="w-4 h-4 mr-2" /> MapPin
                 </Button>
               </div>
             </div>
           </div>
 
           <Card className="p-8 bg-gray-800/50 border-gray-700">
-            <h3 className="text-2xl font-bold mb-6 text-white">{t.contact.form.title}</h3>
-            <form className="space-y-6">
+            <h3 className="text-2xl font-bold mb-6 text-white">
+              {t.contact.form.title}
+            </h3>
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-300">{t.contact.form.name}</label>
-                  <input 
-                    type="text" 
+                  <label className="block text-sm font-medium mb-2 text-gray-300">
+                    {t.contact.form.name}
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-white"
                     placeholder={t.contact.form.namePlaceholder}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-300">{t.contact.form.email}</label>
-                  <input 
-                    type="email" 
+                  <label className="block text-sm font-medium mb-2 text-gray-300">
+                    {t.contact.form.email}
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-white"
                     placeholder={t.contact.form.emailPlaceholder}
                   />
                 </div>
               </div>
-              
+
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-300">{t.contact.form.service}</label>
-                <select className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-white">
+                <label className="block text-sm font-medium mb-2 text-gray-300">
+                  {t.contact.form.service}
+                </label>
+                <select
+                  value={service}
+                  onChange={(e) => setService(e.target.value)}
+                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-white"
+                >
                   {t.contact.form.services.map((service, index) => (
-                    <option key={index} value={service}>{service}</option>
+                    <option key={index} value={service}>
+                      {service}
+                    </option>
                   ))}
                 </select>
               </div>
-              
+
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-300">{t.contact.form.message}</label>
-                <textarea 
+                <label className="block text-sm font-medium mb-2 text-gray-300">
+                  {t.contact.form.message}
+                </label>
+                <textarea
                   rows={4}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-white"
                   placeholder={t.contact.form.messagePlaceholder}
                 ></textarea>
               </div>
-              
-              <Button className="w-full gradient-orange hover:opacity-90 text-white border-0">
+
+              <Button
+                type="submit"
+                className="w-full gradient-orange hover:opacity-90 text-white border-0"
+              >
                 {t.contact.form.send}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
