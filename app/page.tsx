@@ -11,7 +11,6 @@ import { FooterSection } from "@/components/sections/FooterSection";
 import { useLanguage } from "@/hooks/useLanguage";
 import { UnderConstruction } from "@/components/UnderConstruction";
 
-
 export default function Home() {
   const { isLoaded } = useLanguage();
   const [underConstruction, setUnderConstruction] = useState(false);
@@ -23,22 +22,23 @@ export default function Home() {
     }
   };
 
-useEffect(() => {
-  const timestamp = Date.now(); // προσθήκη για να σπάει cache
-  fetch(`https://gist.githubusercontent.com/roottoor1234/82a71fd296aa953fdd17664b84f19639/raw/maintenance.json?nocache=${timestamp}`)
-    .then(res => res.json())
-    .then(data => {
-      setUnderConstruction(data.underConstruction);
-    })
-    .catch(() => {
-      setUnderConstruction(false);
-    });
-}, []);
-
+  useEffect(() => {
+    const timestamp = Date.now(); // προσθήκη για να σπάει cache
+    fetch(
+      `https://gist.githubusercontent.com/roottoor1234/82a71fd296aa953fdd17664b84f19639/raw/maintenance.json?nocache=${timestamp}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setUnderConstruction(data.underConstruction);
+      })
+      .catch(() => {
+        setUnderConstruction(false);
+      });
+  }, []);
 
   if (underConstruction) {
-  return <UnderConstruction />;
-}
+    return <UnderConstruction />;
+  }
 
   // Show loading state until language is loaded
   if (!isLoaded) {
@@ -81,7 +81,7 @@ useEffect(() => {
       <HeroSection scrollToSection={scrollToSection} />
       <ServicesSection />
       <AboutSection scrollToSection={scrollToSection} />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <ContactSection />
       <FooterSection />
     </div>
