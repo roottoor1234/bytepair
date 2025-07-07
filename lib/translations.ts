@@ -120,7 +120,7 @@ export const translations = {
         clients: "Happy Clients"
       }
     },
-    /* Disabled testimonials section
+    // Disabled testimonials section
     testimonials: {
       badge: "Testimonials",
       title: "What Our Clients Say",
@@ -142,7 +142,7 @@ export const translations = {
         }
       ]
     },
-    */
+
     contact: {
       badge: "Contact Us",
       title: "Ready to Upgrade Your Tech?",
@@ -324,7 +324,7 @@ export const translations = {
         clients: "Ικανοποιημένοι Πελάτες"
       }
     },
-    /* Disabled testimonials section
+    //  Disabled testimonials section
     testimonials: {
       badge: "Μαρτυρίες",
       title: "Τι Λένε οι Πελάτες μας",
@@ -346,7 +346,7 @@ export const translations = {
         }
       ]
     },
-    */
+
     contact: {
       badge: "Επικοινωνία",
       title: "Έτοιμοι για Τεχνολογική Αναβάθμιση;",
