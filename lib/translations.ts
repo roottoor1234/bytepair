@@ -59,8 +59,8 @@ export const translations = {
         description: "Expert repairs for smartphones, tablets, and mobile devices.",
         features: [
           "Screen Replacement",
-          "Battery Replacement",
-          "Water Damage Recovery",
+          "Battery  And Charging Port Replacement",
+          "Data Transfer",
           "Software Troubleshooting"
         ]
       },
@@ -120,6 +120,7 @@ export const translations = {
         clients: "Happy Clients"
       }
     },
+    /* Disabled testimonials section
     testimonials: {
       badge: "Testimonials",
       title: "What Our Clients Say",
@@ -141,6 +142,7 @@ export const translations = {
         }
       ]
     },
+    */
     contact: {
       badge: "Contact Us",
       title: "Ready to Upgrade Your Tech?",
@@ -261,8 +263,8 @@ export const translations = {
         description: "Εξειδικευμένες επισκευές για smartphones, tablets και φορητές συσκευές.",
         features: [
           "Αντικατάσταση Οθόνης",
-          "Αντικατάσταση Μπαταρίας",
-          "Ανάκτηση από Ζημιά Νερού",
+          "Αντικατάσταση Μπαταρίας και Θύρας Φόρτισης",
+          "Mεταφορά Δεδομένων",
           "Αντιμετώπιση Προβλημάτων Λογισμικού"
         ]
       },
@@ -322,6 +324,7 @@ export const translations = {
         clients: "Ικανοποιημένοι Πελάτες"
       }
     },
+    /* Disabled testimonials section
     testimonials: {
       badge: "Μαρτυρίες",
       title: "Τι Λένε οι Πελάτες μας",
@@ -343,6 +346,7 @@ export const translations = {
         }
       ]
     },
+    */
     contact: {
       badge: "Επικοινωνία",
       title: "Έτοιμοι για Τεχνολογική Αναβάθμιση;",
